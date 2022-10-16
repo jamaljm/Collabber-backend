@@ -4,6 +4,7 @@ var http = require('http').createServer(app);
 const fs = require('fs')
 const multer = require("multer")
 const upload = multer({ dest: "./uploads/" });
+require('dotenv').config();
 
 app.use(express.static('./uploads/'))
 
@@ -44,6 +45,6 @@ app.post("/uploadfile", upload.single("file"), (req, res) => {
 
 
 var server_port = 5000;
-http.listen(server_port, () => {
+http.listen(server_port|| process.env.PORT, () => {
     console.log("Started on : " + server_port);
 })
